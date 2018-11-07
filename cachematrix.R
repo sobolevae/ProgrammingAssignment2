@@ -10,15 +10,15 @@
 ## to set and get a matrix and a result of it's inversion
 
 makeCacheMatrix <- function(x = matrix()) {
-  inv_x <- NULL
-  set <- function(y) {
-    x <<- y
-    inv_x <<- NULL
-  }
-  get <- function() x
-  setinv_x <- function(inv_y) inv_x <<- inv_y
-  getinv_x <- function() inv_x
-  list(set = set, get = get, setinv_x = setinv_x, getinv_x = getinv_x)
+    inv_x <- NULL
+    set <- function(y) {
+        x <<- y
+        inv_x <<- NULL
+    }
+    get <- function() x
+    setinv_x <- function(inv_y) inv_x <<- inv_y
+    getinv_x <- function() inv_x
+    list(set = set, get = get, setinv_x = setinv_x, getinv_x = getinv_x)
 }
 
 
@@ -29,14 +29,14 @@ makeCacheMatrix <- function(x = matrix()) {
 ## will be used if possible.
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
-  inv_x <- x$getinv_x()
-  if(!is.null(inv_x)) {
-    message("getting cached data")
-    return(inv_x)
-  }
-  data_x <- x$get()
-  inv_x <- solve(data_x, ...)
-  x$setinv_x(inv_x)
-  inv_x
+    ## Return a matrix that is the inverse of 'x'
+    inv_x <- x$getinv_x()
+    if(!is.null(inv_x)) {
+        message("getting cached data")
+        return(inv_x)
+    }
+    data_x <- x$get()
+    inv_x <- solve(data_x, ...)
+    x$setinv_x(inv_x)
+    inv_x
 }
